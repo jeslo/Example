@@ -15,18 +15,20 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.tableViewForData.register(TableViewCell.self, forCellReuseIdentifier: "cellID")
+        //self.tableViewForData.register(TableViewCell.self, forCellReuseIdentifier: "cellID")
         tableViewForData.delegate = self
         tableViewForData.dataSource = self
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.animals.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let datacell = self.tableViewForData.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)as! TableViewCell
-            datacell.LabelForData.text = "ABCDEF"
+        
+        datacell.LabelForData.text = self.animals[indexPath.row]
+        
         return datacell
     }
 
